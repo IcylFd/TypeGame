@@ -1,18 +1,17 @@
 /*
  * @Date: 2020-02-11 14:36:39
  * @LastEditors  : lifangdi
- * @LastEditTime : 2020-02-12 20:48:13
+ * @LastEditTime : 2020-02-12 22:08:55
  */
-// import caption from './caption'
-const caption = 'Like this? This is not my son, it\'s a fake! How did I come up with this... Father...'
+const CAPTION = 'Like this? This is not my son, it\'s a fake! How did I come up with this... Father...'
 // js原生方法获取「开始按钮」
-var start = document.getElementById('start-btn')
+const start = document.getElementById('start-btn')
 
 // js原生方法获取「文本框」
-var input = document.getElementById('input')
+const input = document.getElementById('input')
 
 // 通过id实例化videojs对象
-var myPlayer = videojs('my-video')
+const myPlayer = videojs('my-video')
 
 // 绑定「开始按钮」点击事件
 start.onclick = () => {
@@ -30,7 +29,7 @@ const pre = (n) => {
 }
 
 const back = (n) => {
-  var curTime = myPlayer.currentTime()
+  const curTime = myPlayer.currentTime()
   n < 10
   ? myPlayer.currentTime(curTime - 0.07)
   : myPlayer.currentTime(curTime - 0.08)
@@ -39,10 +38,10 @@ const back = (n) => {
 
 // 文本框输入事件
 // 每次键盘输入事件，获取文本框的值，并进判断逻辑
-var n = 0   // 标志变量n
+let n = 0   // 标志变量n
 input.oninput = (e) => {
-  var value = input.value
-  var caption_arr = caption.split('')
+  let value = input.value
+  let caption_arr = CAPTION.split('')
 
   // 判断是否按del键
   if(e.data) {
