@@ -9,18 +9,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link href="index.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.3.0/video-js.min.css" rel="stylesheet">
 </head>
 <body>
-  <video
-    id="my-video"
-    class="video-js"
-    controls
-  >
-    <source src="./video.mp4" type="video/mp4" />
-  </video>
-  <input id="input" type="text" style="width: 500px">
-  <button id="start-btn">start</button>
+  <div class="video-box">
+    <video
+      id="my-video"
+      class="video"
+      preload
+      width="600"
+    >
+      <source src="./video.mp4" type="video/mp4" />
+    </video>
+    <button id="start-btn" class="show-start">start</button>
+    <div id="game-tip" class="display-end">GAME OVER</div>
+  </div>
+  <input id="input" type="text">
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.3.0/video.min.js"></script>
