@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-02-11 14:36:39
  * @LastEditors  : lifangdi
- * @LastEditTime : 2020-02-13 20:05:30
+ * @LastEditTime : 2020-02-14 18:53:39
  */
 const CAPTION = 'Like this? This is not my son, it\'s a fake! How did I come up with this... Father...'
 // js原生方法获取「开始按钮」
@@ -23,11 +23,13 @@ start.onclick = () => {
 }
 
 // 控制输入每个字符的播放时间
-// 这里是粗略比对，第一句话每帧大概0.07s，后面每帧大概0.08s
 const pre = (n) => {
-  n < 10
-  ? myPlayer.currentTime(0.414 + n * 0.07)
-  : myPlayer.currentTime(0.414 + n * 0.08)
+  let span
+  n < 10 ? span = 75 : span = 81
+  myPlayer.play()
+  setTimeout(() => {
+    myPlayer.pause()
+  }, span)
 }
 
 const back = (n) => {
@@ -49,7 +51,6 @@ input.oninput = (e) => {
   if(e.data) {
     // 比对每个字母是否正确的逻辑
     if(caption_arr[value.length - 1] === e.data) {
-      console.log(1)
       n++
       pre(n)
 
@@ -60,12 +61,9 @@ input.oninput = (e) => {
         input.blur()
       }
     } else {
-      console.log(2)
       myPlayer.pause()
     }
   } else if (n > value.length) {
-    console.log(3)
-
     // 删除到正确的字母回退视频逻辑
     back(n)
     n--
