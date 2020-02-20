@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-02-11 14:36:39
  * @LastEditors  : lifangdi
- * @LastEditTime : 2020-02-14 18:53:39
+ * @LastEditTime : 2020-02-20 21:05:35
  */
 const CAPTION = 'Like this? This is not my son, it\'s a fake! How did I come up with this... Father...'
 // js原生方法获取「开始按钮」
@@ -11,6 +11,17 @@ const start = document.getElementById('start-btn')
 const input = document.getElementById('input')
 
 const game_tip = document.getElementById('game-tip')
+
+const wrong = document.getElementById('wrong-box')
+
+let line_counts = 20;
+for(let i = 0; i < line_counts; i++) {
+  const wrong_line = document.createElement('li');
+  wrong.appendChild(wrong_line);
+  wrong_line.style.height = 450 / line_counts + 'px';
+  wrong_line.className = 'wrong-line';
+}
+
 
 // 通过id实例化videojs对象
 const myPlayer = videojs('my-video')
@@ -50,7 +61,8 @@ input.oninput = (e) => {
   // 判断是否按del键
   if(e.data) {
     // 比对每个字母是否正确的逻辑
-    if(caption_arr[value.length - 1] === e.data) {
+    if(CAPTION.includes(value) && caption_arr[value.length - 1] === e.data) {
+      wrong.style.display = 'none';
       n++
       pre(n)
 
@@ -62,6 +74,7 @@ input.oninput = (e) => {
       }
     } else {
       myPlayer.pause()
+      wrong.style.display = 'block';
     }
   } else if (n > value.length) {
     // 删除到正确的字母回退视频逻辑
