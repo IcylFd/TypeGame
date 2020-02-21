@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-02-11 14:36:39
  * @LastEditors  : lifangdi
- * @LastEditTime : 2020-02-20 21:05:35
+ * @LastEditTime : 2020-02-21 12:10:51
  */
 const CAPTION = 'Like this? This is not my son, it\'s a fake! How did I come up with this... Father...'
 // js原生方法获取「开始按钮」
@@ -46,18 +46,25 @@ const pre = (n) => {
 const back = (n) => {
   const curTime = myPlayer.currentTime()
   n < 10
-  ? myPlayer.currentTime(curTime - 0.07)
-  : myPlayer.currentTime(curTime - 0.08)
+  ? myPlayer.currentTime(curTime - 0.075)
+  : myPlayer.currentTime(curTime - 0.081)
 
+}
+
+let videoLength
+myPlayer.on('loadedmetadata',() => videoLength = Math.floor(myPlayer.duration()))
+
+function getRandomNum(min, max) {
+  return (Math.random() * (max - min) + min).toFixed(3);
 }
 
 // 文本框输入事件
 // 每次键盘输入事件，获取文本框的值，并进判断逻辑
 let n = 0   // 标志变量n
+let lastCorrect = 0.414
 input.oninput = (e) => {
   let value = input.value
   let caption_arr = CAPTION.split('')
-
   // 判断是否按del键
   if(e.data) {
     // 比对每个字母是否正确的逻辑
@@ -65,6 +72,7 @@ input.oninput = (e) => {
       wrong.style.display = 'none';
       n++
       pre(n)
+      lastCorrect = myPlayer.currentTime()
 
       // 成功结束逻辑
       if(value.length === CAPTION.length) {
@@ -74,11 +82,17 @@ input.oninput = (e) => {
       }
     } else {
       myPlayer.pause()
+      myPlayer.currentTime(getRandomNum(0.5, videoLength))
       wrong.style.display = 'block';
     }
   } else if (n > value.length) {
     // 删除到正确的字母回退视频逻辑
     back(n)
     n--
+  } else {
+    myPlayer.currentTime(lastCorrect)
+    if (CAPTION.includes(value)) {
+      wrong.style.display = 'none';
+    }
   }
 }
