@@ -59,6 +59,7 @@
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   display: none;
+  overflow: hidden;
 }
 .wrong-line {
   width: 600px;

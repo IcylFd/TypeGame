@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-02-11 14:36:39
  * @LastEditors  : lifangdi
- * @LastEditTime : 2020-02-21 12:10:51
+ * @LastEditTime : 2020-02-21 12:17:40
  */
 const CAPTION = 'Like this? This is not my son, it\'s a fake! How did I come up with this... Father...'
 // js原生方法获取「开始按钮」
@@ -14,11 +14,11 @@ const game_tip = document.getElementById('game-tip')
 
 const wrong = document.getElementById('wrong-box')
 
-let line_counts = 20;
-for(let i = 0; i < line_counts; i++) {
+let line_height = 35;
+for(let i = 0; i < line_height; i++) {
   const wrong_line = document.createElement('li');
   wrong.appendChild(wrong_line);
-  wrong_line.style.height = 450 / line_counts + 'px';
+  wrong_line.style.height = getRandomNum(3, line_height) + 'px';
   wrong_line.className = 'wrong-line';
 }
 
