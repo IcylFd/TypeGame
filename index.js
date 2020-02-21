@@ -1,14 +1,15 @@
 /*
  * @Date: 2020-02-11 14:36:39
  * @LastEditors  : lifangdi
- * @LastEditTime : 2020-02-21 22:12:42
+ * @LastEditTime : 2020-02-21 22:55:22
  */
-const CAPTION = 'Like this?This is not my son, it\'s a fake!How did I come up with this...Father...'
+const CAPTION = 'Like this? This is not my son, it\'s a fake! How did I come up with this... Father...'
 const SENTENCE1 = 'Like this?'
 const SENTENCE2 = 'This is not my son, it\'s a fake! How did I come up with this...'
 const SENTENCE3 = 'Father...'
 
 const subTitle = document.getElementById('subtitle')
+const startTip = document.getElementById('start-tip')
 const start = document.getElementById('start')
 
 // js原生方法获取「文本框」
@@ -35,17 +36,32 @@ const randomLine = () => {
 // 通过id实例化videojs对象
 const myPlayer = videojs('my-video')
 
+const inputStart = document.createElement('div');
+startTip.appendChild(inputStart);
+inputStart.className = 'start-sentences'
 // 绑定「开始输入框」输入事件
 start.focus()
-start.oninput = () => {
-  if(start.value === 'start') {
-    myPlayer.currentTime(0.414)
-    start.classList.add('remove-start')
-    input.focus();
-    sentences[0].className = 'sentences'
-    // sentences[1].className = 'sentences hide'
-    // sentences[2].className = 'sentences hide'
-
+start.oninput = (e) => {
+  const letter = document.getElementsByClassName('letter')
+  const START_TIP = 'start'
+  const startTipArr = START_TIP.split('')
+  if(e.data) {
+    if(START_TIP.includes(start.value) && startTipArr[start.value.length - 1] === e.data) {
+      inputLetter('letter letter-right', e.data, inputStart);
+      if(start.value.length === 5) {
+        myPlayer.currentTime(0.414)
+        start.classList.add('remove-start')
+        input.focus();
+        sentences[0].className = 'sentences'
+        inputStart.className = 'hide'
+        startTip.className = 'hide'
+      }
+    }
+    else {
+      inputLetter('letter letter-wrong', e.data, inputStart);
+    }
+  } else {
+    inputStart.removeChild(letter[letter.length-1])
   }
 }
 

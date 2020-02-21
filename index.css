@@ -3,6 +3,7 @@
   margin: 0;
   outline: 0;
   list-style: none;
+  font-family: sans-serif;
 }
 html, body {
   height: 100%;
@@ -71,8 +72,8 @@ html, body {
   border-color: rgba(135, 222, 210, .7);
 }
 
-.sentences {
-  width: 780px;
+.sentences, .start-sentences {
+  width: 730px;
   height: 60px;
   position: absolute;
   /* text-align: center; */
@@ -81,10 +82,16 @@ html, body {
   bottom: 280px;
   line-height: 60px;
   font-size: 50px;
-  font-weight: bolder;
+  font-weight: 800;
   color: #fff;
-  -webkit-text-stroke: 4px #000;
+  -webkit-text-stroke: 3px #000;
   z-index: 5;
+}
+.start-sentences {
+  width: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 300px
 }
 
 /* .letter {
@@ -95,10 +102,10 @@ html, body {
 } */
 
 .letter-right {
-  color: #f00;
+  color: #00f;
 }
 .letter-wrong {
-  color: #00f;
+  color: #f00;
 }
 .show {
   display: block;
