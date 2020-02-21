@@ -1,11 +1,11 @@
 /*
  * @Date: 2020-02-11 14:36:39
  * @LastEditors  : lifangdi
- * @LastEditTime : 2020-02-21 12:17:40
+ * @LastEditTime : 2020-02-21 16:25:02
  */
 const CAPTION = 'Like this? This is not my son, it\'s a fake! How did I come up with this... Father...'
-// js原生方法获取「开始按钮」
-const start = document.getElementById('start-btn')
+
+const start = document.getElementById('start')
 
 // js原生方法获取「文本框」
 const input = document.getElementById('input')
@@ -13,6 +13,7 @@ const input = document.getElementById('input')
 const game_tip = document.getElementById('game-tip')
 
 const wrong = document.getElementById('wrong-box')
+
 
 let line_height = 35;
 for(let i = 0; i < line_height; i++) {
@@ -26,11 +27,14 @@ for(let i = 0; i < line_height; i++) {
 // 通过id实例化videojs对象
 const myPlayer = videojs('my-video')
 
-// 绑定「开始按钮」点击事件
-start.onclick = () => {
-  myPlayer.currentTime(0.414)
-  start.classList.add('remove-start')
-  input.focus();
+// 绑定「开始输入框」输入事件
+start.focus()
+start.oninput = () => {
+  if(start.value === 'start') {
+    myPlayer.currentTime(0.414)
+    start.classList.add('remove-start')
+    input.focus();
+  }
 }
 
 // 控制输入每个字符的播放时间
@@ -67,6 +71,7 @@ input.oninput = (e) => {
   let caption_arr = CAPTION.split('')
   // 判断是否按del键
   if(e.data) {
+    const letter = document.createElement('span');
     // 比对每个字母是否正确的逻辑
     if(CAPTION.includes(value) && caption_arr[value.length - 1] === e.data) {
       wrong.style.display = 'none';
