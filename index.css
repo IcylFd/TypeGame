@@ -50,8 +50,8 @@ html, body {
   font-weight: bold;
 }
 .wrong-style {
-  width: 600px;
-  height: 450px;
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -60,7 +60,7 @@ html, body {
   overflow: hidden;
 }
 .wrong-line {
-  width: 600px;
+  width: 100%;
   border-bottom: 1px solid rgba(125, 184, 233, .7);
   box-sizing: border-box;
 }
@@ -69,4 +69,40 @@ html, body {
 }
 .wrong-line:nth-child(2n) {
   border-color: rgba(135, 222, 210, .7);
+}
+
+.sentences {
+  width: 780px;
+  height: 60px;
+  position: absolute;
+  /* text-align: center; */
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 280px;
+  line-height: 60px;
+  font-size: 50px;
+  font-weight: bolder;
+  color: #fff;
+  -webkit-text-stroke: 4px #000;
+  z-index: 5;
+}
+
+/* .letter {
+  margin-left: -17px;
+}
+.letter:first-child {
+  margin-left: 0;
+} */
+
+.letter-right {
+  color: #f00;
+}
+.letter-wrong {
+  color: #00f;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
 }
